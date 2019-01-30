@@ -18,15 +18,22 @@ export const charsReducer = (state = initialState, action) => {
     // your switch statement should handle all of these cases.
     case FETCH_CHARACTER_START:
       return{
-
+        ...state,
+        isFetching: true,
+        error: ''
       }
     case FETCH_CHARACTER_SUCCESS:
       return{
-        
+        ...state,
+        characters: action.payload,
+        isFetching: false,
+        error: ''
       }
     case FETCH_CHARACTER_FAILURE:
       return {
-        
+        ...state,
+        isFetching: false,
+        error: action.payload
       }
     default:
       return state;
