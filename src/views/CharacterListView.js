@@ -5,8 +5,8 @@ import { CharacterList } from "../components";
 import { getCharacters } from '../actions'
 
 class CharacterListView extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   componentDidMount() {
@@ -19,7 +19,7 @@ class CharacterListView extends React.Component {
     }
     return (
       <div className="CharactersList_wrapper">
-        <CharacterList characters={this.props.characters} />
+        {this.props.characters && <CharacterList characters={this.props.characters} />}
       </div>
     );
   }
@@ -29,7 +29,8 @@ class CharacterListView extends React.Component {
 // the characters and the fetching boolean
 const mapStateToProps = state => {
   return{
-    ...state
+    characters: state.charsReducer.characters,
+    fetching: state.charsReducer.fetching,
   }
 } 
 
